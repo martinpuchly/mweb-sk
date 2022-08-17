@@ -1,0 +1,25 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+body{
+    background: rgb(2,0,36) no-repeat;
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(34,34,70,1) 35%, rgba(0,212,255,1) 100%);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container{
+    background-color: white;
+    padding-bottom: 5em;
+    border-radius: 0em 0em 2em 2em;
+}
+
+hr{
+    color: rgba(34,34,70,1);
+}
+
+
+h1, h2, h3,h4{
+    color: rgba(34,34,70,1);
+    text-decoration: underline;
+}    
