@@ -4,17 +4,18 @@
         <div v-if="pages.length<1">
             Zatiaľ neboli pridané žiadne stránky.
         </div>
-        <table class="table" v-else>
-            <thead class="thead-dark">
+        <table class="table table-striped" v-else>
+            <thead class="table-dark">
                 <tr>
-                    <th>#</th>
-                    <th>názov:</th>
-                    <th>popis:</th>
-                    <th>možnosti:</th>
+                    <th scope="col">#</th>
+                    <th scope="col">názov:</th>
+                    <th scope="col">zobrazenia:</th>
+                    <th scope="col">popis:</th>
+                    <th scope="col">možnosti:</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="page in pages" :key="page.id">
+                <tr v-for="page in pages" :key="page.id" :class="!!page.deleted_at ? 'table-danger' : ''">
                     <td>{{ page.id }}</td>
                     <td>{{ page.title }}
                     <Link :href="route('page', page.slug)" title="zobraziť" class="px-2" v-if="!page.deleted_at">
@@ -24,6 +25,7 @@
                         </svg>
                     </Link>    
                     </td>
+                    <td>{{ page.views }}</td>
                     <td>{{ page.description }}</td>
                     <td>
                         <div v-if="!page.deleted_at">

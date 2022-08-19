@@ -16,10 +16,21 @@ class PageController extends Controller
         ]);
     }
 
-    public function show($page_slug){
+    public function show(Request $request, $page_slug){
         if(!$page = Page::where('slug', $page_slug)->first()){
             return abort(404);
         }
+        if($request->cookie('page_view_'.$page->id) != true){
+            $request->cookie('page_view_'.$page->id, true);
+        }
+
+        if(empty(cookie('page_view_'.$page->id))){
+            $page->increment('views');
+            cookie($name = 'page_view_'.$page->id, $value = true, 60*24*30);
+        }
+
+
+
         return Inertia::render('Pages/Show', [
             'page'=>$page
         ]);
