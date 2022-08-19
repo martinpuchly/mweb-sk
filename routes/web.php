@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,11 +37,15 @@ Route::prefix('admin')
         ->name('admin.')
         ->middleware('isAdmin')
         ->group(function () {
-
-            
-
-
-
-    
-
+            Route::get('/stranky', [PageController::class, 'adminList'])->name('pages');
+            Route::get('/stranky/nova', [PageController::class, 'create'])->name('pages.create');
+            Route::post('/stranky/nova', [PageController::class, 'store']);
+            Route::get('/stranky/upravit/{page}', [PageController::class, 'edit'])->name('pages.update');
+            Route::patch('/stranky/upravit/{page}', [PageController::class, 'update']);
+            Route::patch('/stranky/obnovit/{page}', [PageController::class, 'restore'])->name('pages.restore');
+            Route::delete('/stranky/vymazat/{page}', [PageController::class, 'delete'])->name('pages.delete');
+            Route::delete('/stranky/vymazattrvale/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
         });
+
+
+        Route::get('/{page_slug}', [PageController::class, 'show'])->name('page');

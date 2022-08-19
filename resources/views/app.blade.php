@@ -16,5 +16,8 @@
     </head>
     <body class="font-sans antialiased ">
         @inertia
+        <div class="container text-center mt-2" style="color:white">
+            mWeb.sk, © {{ Date('Y') }}
+        </div>
     </body>
 </html>

@@ -8,7 +8,7 @@ body{
     background-size: cover;
 }
 
-.container{
+.container-main{
     background-color: white;
     padding-bottom: 5em;
     border-radius: 0em 0em 2em 2em;
@@ -22,4 +22,8 @@ hr{
 h1, h2, h3,h4{
     color: rgba(34,34,70,1);
     text-decoration: underline;
-}    
+} 
+
+td{
+    padding-right: 3em;
+}
