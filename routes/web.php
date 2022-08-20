@@ -52,13 +52,14 @@ Route::prefix('admin')
             Route::get('/clanky', [PostController::class, 'adminList'])->name('posts');
             Route::get('/clanky/novy', [PostController::class, 'create'])->name('posts.create');
             Route::post('/clanky/novy', [PostController::class, 'store']);
-            Route::get('/clanky/upravit/{page}', [PostController::class, 'edit'])->name('posts.update');
-            Route::patch('/clanky/upravit/{page}', [PostController::class, 'update']);
-            Route::patch('/clanky/obnovit/{page}', [PostController::class, 'restore'])->name('posts.restore');
-            Route::delete('/clanky/vymazat/{page}', [PostController::class, 'delete'])->name('posts.delete');
-            Route::delete('/clanky/vymazattrvale/{page}', [PostController::class, 'destroy'])->name('posts.destroy');
+            Route::get('/clanky/upravit/{post}', [PostController::class, 'edit'])->name('posts.update');
+            Route::patch('/clanky/upravit/{post}', [PostController::class, 'update']);
+            Route::patch('/clanky/obnovit/{post}', [PostController::class, 'restore'])->name('posts.restore');
+            Route::delete('/clanky/vymazat/{post}', [PostController::class, 'delete'])->name('posts.delete');
+            Route::delete('/clanky/vymazattrvale/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
         });
 
 
+        Route::get('/clanky/{post}', [PostController::class, 'show'])->name('post');
         Route::get('/{page_slug}', [PageController::class, 'show'])->name('page');

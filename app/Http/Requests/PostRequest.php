@@ -29,6 +29,8 @@ class PostRequest extends FormRequest
             'tags' => 'required|min:3|max:255',
             'intro' => 'required|min:50|max:5000',
             'text' => 'nullable|min:30',
+            'slug' => 'required',
+            'user_id' => 'required'
         ];
     }
 
@@ -52,7 +54,6 @@ class PostRequest extends FormRequest
             'intro.min' => 'Úvod článku/Krátky článok musí obsahovať minimálne :min znakov.',
             'intro.max' => 'Úvod článku/Krátky článok môže obsahovať maximálne :max znakov.',
             'text.min' => 'Text článku musí obsahovať minimálne :min znakov.',
-
         ];
     }
 

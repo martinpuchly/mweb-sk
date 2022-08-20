@@ -1,8 +1,8 @@
 <template>
     
 <AppLayout>
-    <h1>Vytvoriť článok</h1>
-    <form @submit.prevent="form.post(route('admin.posts.create'))">
+    <h1>Upraviť článok</h1>
+    <form @submit.prevent="form.patch(route('admin.posts.update', post))">
         <div class="mb-3 row col-5">
             <label for="title" class="col-sm-2 col-form-label">Titulok: </label>
             <div class="col-sm-10">
@@ -57,12 +57,12 @@ export default {
         AppLayout,
         ckeditor: ClassicEditor.component
     },
-    setup () {
+    setup (props) {
         const form = useForm({
-            title: null,
-            tags: null,
-            intro: "",
-            text: "",
+            title: props.post.title,
+            tags: props.post.tags,
+            intro: props.post.intro,
+            text: props.post.text
         })
 
         return { form }

@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\PostRequest;
 class PostController extends Controller
 {
+
+
+    public function adminList(){
+        return Inertia::render(('Admin/Posts/AdminList'),[
+            'posts'=>Post::withTrashed()->get()
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,16 +37,12 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(PostRequest $request)
     {
         $post = new Post($request->validated());
-        return redirect()->route('posts.update', ['post'=>$post])->with('succeed', 'Článok bol pridaný.');
+        $post->save();
+        return redirect()->route('admin.posts.update', ['post'=>$post])->with('succeed', 'Článok bol pridaný.');
     }
 
     /**
@@ -61,7 +64,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render(('Admin/Posts/Edit'),[
+            'post'=>$post
+        ]);
     }
 
     /**
@@ -71,19 +76,28 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->fill($request->validated());
+        $post->save();
+        return redirect()->route('admin.posts.update', ['post'=>$post])->with('succeed', 'Článok bol upravený.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
+
+
+    public function restore($post_id){
+        $post = Post::withTrashed()->where('id', $post_id)->first();
+        $post->restore();
+        return redirect()->route('admin.posts')->with('succeed', 'Článok bol obnovený.');
+    }
+
+    public function delete(Post $post){
+        $post->delete();
+        return redirect()->route('admin.posts')->with('succeed', 'Článok bol vymazaný.');
+    }
+    public function destroy($post_id){
+        $post = Post::withTrashed()->where('id', $post_id)->first();
+        $post->forceDelete();
+        return redirect()->route('admin.posts')->with('succeed', 'Článok bol permanentne vymazaný.');
     }
 }

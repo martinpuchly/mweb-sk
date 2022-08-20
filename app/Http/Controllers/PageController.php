@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PageRequest;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Page;
 
