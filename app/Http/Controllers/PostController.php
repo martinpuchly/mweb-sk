@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-
+use Inertia\Inertia;
+use App\Http\Requests\PostRequest;
 class PostController extends Controller
 {
     /**
@@ -24,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render(('Admin/Posts/Create'),[
+            'post'=>new Post()
+        ]);
     }
 
     /**
@@ -33,9 +36,10 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = new Post($request->validated());
+        return redirect()->route('posts.update', ['post'=>$post])->with('succeed', 'Článok bol pridaný.');
     }
 
     /**

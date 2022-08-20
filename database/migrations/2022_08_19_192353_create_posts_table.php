@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('text');
             $table->integer('views')->nullable()->default(0);
             $table->integer('likes')->nullable()->default(0);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');;
+            $table->softDeletes();
             $table->timestamps();
         });
     }
