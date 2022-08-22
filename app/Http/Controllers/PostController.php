@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Inertia\Inertia;
 use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request; 
+
+
 class PostController extends Controller
 {
 
@@ -62,17 +65,15 @@ class PostController extends Controller
         ]);
     }
 
-    public function like(Post $post){
-        if(!cookie('post_like_'.$post->id) or cookie('post_like_'.$post->id)!=true){
-            cookie('post_like_'.$post->id, true);
+    public function like(Request $request, Post $post){
+        if(empty(cookie('post_like_'.$post->id))){
             $post->increment('likes');
+            cookie($name = 'post_like_'.$post->id, $value = true, 60*24*30);
             return redirect()->route('post', ['post_slug'=>$post->slug])->with('succeed', 'Like bol pridaný. Ďakujeme.');
         }else{
             return redirect()->route('post', ['post_slug'=>$post->slug])->with('notice', 'Článok si už likoval.');
         }
-
     }
-
 
     /**
      * Show the form for editing the specified resource.
