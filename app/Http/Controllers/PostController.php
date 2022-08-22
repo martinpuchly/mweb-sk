@@ -51,10 +51,28 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(String $post_slug)
     {
-        //
+        if(!$post = Post::where('slug', $post_slug)->with('user')->first()){
+            return abort(404);
+        }
+        return Inertia::render('Posts/Show', [
+            'post'=>$post,
+            'is_liked'=> cookie('post_like_'.$post->id) or cookie('post_like_'.$post->id)!=true ? false : true
+        ]);
     }
+
+    public function like(Post $post){
+        if(!cookie('post_like_'.$post->id) or cookie('post_like_'.$post->id)!=true){
+            cookie('post_like_'.$post->id, true);
+            $post->increment('likes');
+            return redirect()->route('post', ['post_slug'=>$post->slug])->with('succeed', 'Like bol pridaný. Ďakujeme.');
+        }else{
+            return redirect()->route('post', ['post_slug'=>$post->slug])->with('notice', 'Článok si už likoval.');
+        }
+
+    }
+
 
     /**
      * Show the form for editing the specified resource.

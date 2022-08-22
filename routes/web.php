@@ -61,5 +61,6 @@ Route::prefix('admin')
         });
 
 
-        Route::get('/clanky/{post}', [PostController::class, 'show'])->name('post');
+        Route::get('/clanky/{post_slug}', [PostController::class, 'show'])->name('post');
+        Route::put('/clanky/like/{post}', [PostController::class, 'like'])->name('post.like');
         Route::get('/{page_slug}', [PageController::class, 'show'])->name('page');
