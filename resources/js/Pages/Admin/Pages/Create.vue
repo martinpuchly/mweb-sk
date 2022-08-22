@@ -25,7 +25,7 @@
             </div>
         </div>
             <div class="mb-3 row col-12">
-            <label for="description" class="col-sm-2 col-form-label">Stránka: </label>
+            <label for="body" class="col-sm-2 col-form-label">Stránka: </label>
             <div class="text-danger" v-if="form.errors.body">{{ form.errors.body }}</div>
             <div class="col-12">
                 <ckeditor :editor="editor" v-model="form.body" :config="editorConfig"></ckeditor>
