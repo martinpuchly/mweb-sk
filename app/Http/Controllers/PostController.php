@@ -61,6 +61,7 @@ class PostController extends Controller
         }
         return Inertia::render('Posts/Show', [
             'post'=>$post,
+            'tagsArr'=>explode(',', $post->tags),
             'is_liked'=> cookie('post_like_'.$post->id) or cookie('post_like_'.$post->id)!=true ? false : true
         ]);
     }

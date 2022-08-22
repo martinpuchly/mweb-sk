@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PageRequest;
 use Inertia\Inertia;
 use App\Models\Page;
+use Illuminate\Http\Request;
+
 
 class PageController extends Controller
 {
@@ -19,16 +21,10 @@ class PageController extends Controller
         if(!$page = Page::where('slug', $page_slug)->first()){
             return abort(404);
         }
-        if($request->cookie('page_view_'.$page->id) != true){
-            $request->cookie('page_view_'.$page->id, true);
-        }
-
         if(empty(cookie('page_view_'.$page->id))){
             $page->increment('views');
             cookie($name = 'page_view_'.$page->id, $value = true, 60*24*30);
         }
-
-
 
         return Inertia::render('Pages/Show', [
             'page'=>$page
