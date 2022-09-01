@@ -2,7 +2,9 @@
         <div class="container container-main ">
             <div class="row" style="border-bottom-style: solid; border-color: rgba(34,34,70,0.5);">
                 <div class="col-8" style="font-style: italic; font-size: 3em; margin-left: 1em;">
-                    mWeb.sk
+                    <Link :href="route('/')" title="mweb.sk" class="px-2" style="color:black; text-decoration:none">
+                        mWeb.sk
+                    </Link>
                 </div>
             </div>
             <div class="row">
@@ -41,9 +43,11 @@
 
 <script>
     import SidePanel from './SidePanel.vue';
+    import { Link } from '@inertiajs/inertia-vue3'
     export default{
         components:{
-            SidePanel
+            SidePanel,
+            Link
         }
 
     }

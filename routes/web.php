@@ -6,6 +6,10 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\QuickNewController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +22,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [HomeController::class, 'index'])->name('/');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -39,6 +36,9 @@ Route::prefix('admin')
         ->name('admin.')
         ->middleware('isAdmin')
         ->group(function () {
+            Route::get('', [AdminController::class, 'index'])->name('');
+
+        //STRANKY
             Route::get('/stranky', [PageController::class, 'adminList'])->name('pages');
             Route::get('/stranky/nova', [PageController::class, 'create'])->name('pages.create');
             Route::post('/stranky/nova', [PageController::class, 'store']);
@@ -48,7 +48,7 @@ Route::prefix('admin')
             Route::delete('/stranky/vymazat/{page}', [PageController::class, 'delete'])->name('pages.delete');
             Route::delete('/stranky/vymazattrvale/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
-
+        //ČLÁNKY
             Route::get('/clanky', [PostController::class, 'adminList'])->name('posts');
             Route::get('/clanky/novy', [PostController::class, 'create'])->name('posts.create');
             Route::post('/clanky/novy', [PostController::class, 'store']);
@@ -57,6 +57,15 @@ Route::prefix('admin')
             Route::patch('/clanky/obnovit/{post}', [PostController::class, 'restore'])->name('posts.restore');
             Route::delete('/clanky/vymazat/{post}', [PostController::class, 'delete'])->name('posts.delete');
             Route::delete('/clanky/vymazattrvale/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+        //NOVINKY
+            Route::get('/novinky', [QuickNewController::class, 'adminList'])->name('quicknews');
+            Route::get('/novinky/nova', [QuickNewController::class, 'create'])->name('quicknews.create');
+            Route::post('/novinky/nova', [QuickNewController::class, 'store']);
+            Route::get('/novinky/upravit/{quicknew}', [QuickNewController::class, 'edit'])->name('quicknews.update');
+            Route::patch('/novinky/upravit/{quicknew}', [QuickNewController::class, 'update']);
+            Route::delete('/novinky/vymazat/{quicknew}', [QuickNewController::class, 'delete'])->name('quicknews.delete');
+
 
         });
 

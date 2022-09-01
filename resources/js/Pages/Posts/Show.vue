@@ -4,7 +4,7 @@
     <article>
         <header class=" mb-4">
             <div class="float-end">
-                <Link :href="route('post.like', post)" method="PUT" title="páči sa mi článok" class="px-2" as="button">
+                <Link :href="route('post.like', post)" method="PUT" title="páči sa mi článok" class="px-2 border-0 bg-transparent" as="button">
                 <button type="button" class="btn btn-primary text-white">
                         Páči sa mi článok
                         <span class="badge text-bg-secondary mx-2">{{ post.likes }}</span>
