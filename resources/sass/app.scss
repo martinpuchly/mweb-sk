@@ -1,5 +1,10 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+$theme-colors: (
+  "dark": $blue-900,
+  "danger": #ff4136
+);
+
 
 body{
     background: rgb(2,0,36) no-repeat;
