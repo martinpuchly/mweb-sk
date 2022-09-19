@@ -5,6 +5,7 @@ import BreezeInput from '@/Components/Input.vue';
 import BreezeInputError from '@/Components/InputError.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const form = useForm({
     name: '',
@@ -22,43 +23,37 @@ const submit = () => {
 </script>
 
 <template>
-    <BreezeGuestLayout>
+    <AppLayout>
         <Head title="Register" />
-
+        <h1>Registrácia</h1>
         <form @submit.prevent="submit">
-            <div>
-                <BreezeLabel for="name" value="Name" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
-                <BreezeInputError class="mt-2" :message="form.errors.name" />
-            </div>
 
-            <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
-                <BreezeInputError class="mt-2" :message="form.errors.email" />
-            </div>
 
-            <div class="mt-4">
-                <BreezeLabel for="password" value="Password" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-                <BreezeInputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
-                <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-                <BreezeInputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
-                </Link>
-
-                <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </BreezeButton>
+            <div class="col-5">
+                <div class="form-group">
+                        <label for="name" class="form-label">Prihlasovacie meno:</label>
+                        <input type="text" name="name" id="name" class="form-control" v-model="form.name">
+                        <BreezeInputError class="mt-2 text-danger" :message="form.errors.name" />
+                </div>
+                <div class="form-group mt-3">
+                        <label for="email" class="form-label">Emailová adresa:</label>
+                        <input type="text" name="email" id="email" class="form-control" v-model="form.email">
+                        <BreezeInputError class="mt-2 text-danger" :message="form.errors.email" />
+                </div>
+                <div class="form-group mt-3">
+                        <label for="password" class="form-label">Heslo:</label>
+                        <input type="password" name="password" id="password" class="form-control" v-model="form.password">
+                        <BreezeInputError class="mt-2 text-danger" :message="form.errors.password" />
+                </div>
+                <div class="form-group mt-3">
+                        <label for="password_confirmation" class="form-label">Potvrdenie hesla:</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" v-model="form.password_confirmation">
+                        <BreezeInputError class="mt-2 text-danger" :message="form.errors.password_confirmation" />
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary mt-4">Registrovať </button>
+                </div>
             </div>
         </form>
-    </BreezeGuestLayout>
+    </AppLayout>
 </template>
