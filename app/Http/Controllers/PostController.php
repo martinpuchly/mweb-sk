@@ -28,7 +28,7 @@ class PostController extends Controller
         return Inertia::render(('Posts/Index'),[
             'posts'=>Post::when($tag, function ($query, $tag) {
                                 $query->where('tags', 'like', '%'.$tag.'%');
-                            })->paginate(5)
+                            })->orderBy('created_at', 'DESC')->paginate(5)
         ]);
     }
 
