@@ -23,9 +23,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tag = "")
     {
-        //
+        return Inertia::render(('Posts/Index'),[
+            'posts'=>Post::when($tag, function ($query, $tag) {
+                                $query->where('tags', 'like', '%'.$tag.'%');
+                            })->paginate(5)
+        ]);
     }
 
     /**
@@ -61,7 +65,6 @@ class PostController extends Controller
         }
         return Inertia::render('Posts/Show', [
             'post'=>$post,
-            'tagsArr'=>explode(',', $post->tags),
             'is_liked'=> cookie('post_like_'.$post->id) or cookie('post_like_'.$post->id)!=true ? false : true
         ]);
     }
@@ -72,7 +75,7 @@ class PostController extends Controller
             cookie($name = 'post_like_'.$post->id, $value = true, 60*24*30);
             return redirect()->route('post', ['post_slug'=>$post->slug])->with('succeed', 'Like bol pridaný. Ďakujeme.');
         }else{
-            return redirect()->route('post', ['post_slug'=>$post->slug])->with('notice', 'Článok si už likoval.');
+            return redirect()->route('post', ['post_slug'=>$post->slug])->with('notice', 'Článok už má tvoj like.');
         }
     }
 

@@ -16,8 +16,12 @@ class Page extends Model
     protected $appends = ['update_hum'];
 
     public function getUpdateHumAttribute(){
-        Carbon::setLocale('sk');
-        return $this->updated_at->diffForHumans();
+        if($this->updated_at)
+        {
+            Carbon::setLocale('sk');
+            return $this->updated_at->diffForHumans();
+        }
+        return "-";
     }
     
     

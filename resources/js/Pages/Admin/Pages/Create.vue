@@ -42,12 +42,14 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-
 export default {
     data(){
         return{
             editor: ClassicEditor,
-            editorConfig: {}
+            editorConfig: {
+                filebrowserUploadUrl: "{{route('admin.pages.image-upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form',
+            }
         }
     },
     props: {

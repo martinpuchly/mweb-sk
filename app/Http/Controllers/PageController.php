@@ -71,4 +71,21 @@ class PageController extends Controller
         $page->forceDelete();
         return redirect()->route('admin.pages')->with('succeed', 'Stránka bola permanentne vymazaná.');
     }
+
+
+    public function upload_images(Request $request)
+    {
+         $request->validate([
+             'upload' => 'image',
+         ]);
+         if ($request->hasFile('upload')) {
+               $url = $request->upload->store('images');
+               $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+               $url = asset('storage/' . $url);
+               $msg = 'Image successfully uploaded';
+               $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+               @header('Content-type: text/html; charset=utf-8');
+               return $response;
+           }
+   }
 }

@@ -24,8 +24,6 @@
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^35.0.1",
         "@ckeditor/ckeditor5-vue": "^4.0.1",
-        "bootstrap": "^5.2.0",
-        "moment-timezone": "^0.5.34",
-        "vue-moment": "^4.1.0"
+        "bootstrap": "^5.2.0"
     }
 }

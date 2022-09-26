@@ -2,26 +2,30 @@
     
     <AppLayout>
         <div class="row">
-            <div class="col-12">
-                <p class="fs-4 justify-content-between lh-lg" style="text-indent:2em">
-                    Vo voľnom čase sa rád venujem programovaniu. Považujem to za jeden zo svojich koníčkov a neživím sa tým. Venujem sa tomu už minimálne 10 rokov, vzhľadom na to že rád experimentujem s novými technológiami, nemám žiadny trvalý projekt na ktorom by som pracoval. Všetko končí v koši a ja začnem odznovu s niečím iným. Preto žiadne portfólio. (asi by som mal dať niečo dokopy)
-                </p>
-            </div>
-            <div class="row mt-5">
-                <div class="col">
+                <div class="col-lg-8">
                     <h3>Najnovšie články</h3>
                     <article v-for="post in posts" :key="post.id" class="mt-2 px-2 py-2 border rounded">
                         <Link :href="route('post', post.slug)" title="zobraziť">
                             <h4>{{ post.title }}</h4>
                         </Link>  
                         <main v-html="post.intro" class="col-12" style="text-indent:2em; "></main>
+                        <div class="text-end" v-if="post.text">
+                            <Link :href="route('post', post.slug)"  :title="'zobraziť článok ' + post.title" class="mr-0">
+                            ...zobraziť celý článok...
+                            </Link>
+                        </div>
                     </article>
                 </div>
-                <div class="col-4 border-left" style="border-left-style: solid; border-color: rgba(34,34,70,0.5);">
+                <div class="col-lg-4 border-left" style="border-left-style: solid; border-color: rgba(34,34,70,0.5);">
                     <h3>Novinky</h3>
+                    <div class="card mt-2" v-for="quicknew in quicknews" :key="quicknew.id">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted" v-if="quicknew.title">{{ quicknew.title }}</h6>
+                            <p class="card-text">{{ quicknew.text }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     
     
     </AppLayout>
@@ -33,7 +37,8 @@
     
     export default{
         props:{
-            posts: Object
+            posts: Object,
+            quicknews: Object
         },
         components:{
             AppLayout,

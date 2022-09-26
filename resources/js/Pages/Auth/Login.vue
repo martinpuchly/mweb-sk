@@ -34,7 +34,7 @@ const submit = () => {
             </div>
             <div class="form-group mt-3">
                     <label for="password" class="form-label">Heslo:</label>
-                    <input type="text" name="password" id="password" class="form-control" v-model="form.password">
+                    <input type="password" name="password" id="password" class="form-control" v-model="form.password">
                     <BreezeInputError class="mt-2 text-danger" :message="form.errors.password" />
 
             </div>

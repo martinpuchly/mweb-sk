@@ -1,5 +1,5 @@
 <template>
-    <div v-if="links.length > 3">
+    <div v-if="links.length > 3" class="d-flex justify-content-center">
         <div class="pagination">
             <template v-for="(link, key) in links" :key="key">
                 <div

@@ -14,7 +14,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = ['title', 'slug', 'tags', 'intro', 'text', 'views', 'likes', 'user_id'];
-    protected $appends = ['create_hum'];
+    protected $appends = ['create_hum', 'tag_array'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -22,7 +22,16 @@ class Post extends Model
 
 
     public function getCreateHumAttribute(){
-        Carbon::setLocale('sk');
-        return $this->created_at->diffForHumans();
+        if($this->updated_at)
+        {
+            Carbon::setLocale('sk');
+            return $this->updated_at->diffForHumans();
+        }
+        return "-";
     }
+
+    public function getTagArrayAttribute(){
+       return explode(",", $this->tags);
+    }
+
 }

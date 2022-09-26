@@ -36,7 +36,7 @@ Route::prefix('admin')
         ->name('admin.')
         ->middleware('isAdmin')
         ->group(function () {
-            Route::get('', [AdminController::class, 'index'])->name('');
+            Route::get('', [AdminController::class, 'index'])->name('admin');
 
         //STRANKY
             Route::get('/stranky', [PageController::class, 'adminList'])->name('pages');
@@ -47,6 +47,9 @@ Route::prefix('admin')
             Route::patch('/stranky/obnovit/{page}', [PageController::class, 'restore'])->name('pages.restore');
             Route::delete('/stranky/vymazat/{page}', [PageController::class, 'delete'])->name('pages.delete');
             Route::delete('/stranky/vymazattrvale/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
+
+
+            Route::post('/stranky/uploadimage', [PageController::class, 'upload_images'])->name('pages.image-upload');
 
         //ČLÁNKY
             Route::get('/clanky', [PostController::class, 'adminList'])->name('posts');
