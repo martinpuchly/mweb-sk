@@ -4,7 +4,7 @@
 
         <div class="container">
             <div class="row gx-5">
-                <div class="col">
+                <div class="col-md-3">
                 <h2>Stránky</h2>
                 <ul>
                     <li>
@@ -19,33 +19,33 @@
                     </li>
                 </ul>
             </div>      
-            <div class="col">
+            <div class="col-md-3">
                 <h2>Články</h2>
                 <ul>
                     <li>
                         <Link :href="route('admin.posts')" title="mweb.sk" class="px-2" style="color:black; text-decoration:none">
-                            Novinky
+                            Články
                         </Link>
                     </li>
                     <li>
                     <Link :href="route('admin.posts.create')" title="mweb.sk" class="px-2" style="color:black; text-decoration:none">
-                        Pridať novinku
+                        Pridať článok
                     </Link>
                     </li>
                 </ul>
 
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <h2>Novinky</h2>
                 <ul>
                     <li>
                         <Link :href="route('admin.quicknews')" title="mweb.sk" class="px-2" style="color:black; text-decoration:none">
-                            Články
+                            Novinky
                         </Link>         
                     </li>
                     <li>
                     <Link :href="route('admin.quicknews.create')" title="mweb.sk" class="px-2" style="color:black; text-decoration:none">
-                        Pridať článok
+                        Pridať novinku
                     </Link>
                     </li>
                 </ul>
@@ -53,6 +53,13 @@
             </div>
         </div>
     </AppLayout>
+
+
+    <Head>
+        <title>administrácia</title>
+    </Head>
+
+
 </template>
 
 
@@ -60,11 +67,12 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import { Link } from '@inertiajs/inertia-vue3';
+    import { Link, Head } from '@inertiajs/inertia-vue3';
     export default{
         components:{
             AppLayout,
-            Link
+            Link,
+            Head
         }
 
     }

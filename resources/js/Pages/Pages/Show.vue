@@ -18,18 +18,24 @@
             </div>
         </footer>
      </AppLayout>
+
+     
+     <Head>
+        <title>{{ post.title }}</title>
+    </Head>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link, Head } from '@inertiajs/inertia-vue3';
 export default {
     props: {
         page: Object
     },
     components:{
         AppLayout,
-        Link
+        Link,
+        Head
     }
 
 

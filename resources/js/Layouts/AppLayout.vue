@@ -4,8 +4,8 @@
 
         <div class="container container-main ">
             <div class="row">
-                <SidePanel class="col-3 px-2 pt-4" style="border-right-style: solid; border-color: rgba(34,34,70,0.5);"></SidePanel >
-                <main class="col-9 pt-4">
+                <SidePanel class="col-md-3 px-2 pt-4" style="border-right-style: solid; border-color: rgba(34,34,70,0.5);"></SidePanel >
+                <main class="col-md-9 pt-4">
                     <div  v-if="$page.props.flash.succeed" class="alert alert-success d-flex align-items-center" role="alert">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">

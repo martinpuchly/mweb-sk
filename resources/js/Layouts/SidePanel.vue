@@ -6,7 +6,7 @@
             </Link>
         </div> 
         <h3>O mne:</h3>
-        <p class="text-justify mx-2">
+        <p class="lh-md text-justify mx-2">
             Vo voľnom čase sa rád venujem programovaniu. 
             Považujem to za jeden zo svojich koníčkov a neživím sa tým.
             Venujem sa tomu už minimálne 10 rokov, vzhľadom na to že rád experimentujem s novými technológiami, nemám žiadny trvalý projekt na ktorom by som pracoval.

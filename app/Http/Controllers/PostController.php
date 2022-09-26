@@ -70,9 +70,9 @@ class PostController extends Controller
     }
 
     public function like(Request $request, Post $post){
-        if(empty(cookie('post_like_'.$post->id))){
+        if($request->cookie('post_like_'.$post->id)){
             $post->increment('likes');
-            cookie($name = 'post_like_'.$post->id, $value = true, 60*24*30);
+            $request->cookie($name = 'post_like_'.$post->id, $value = true, 60*24*30);
             return redirect()->route('post', ['post_slug'=>$post->slug])->with('succeed', 'Like bol pridaný. Ďakujeme.');
         }else{
             return redirect()->route('post', ['post_slug'=>$post->slug])->with('notice', 'Článok už má tvoj like.');

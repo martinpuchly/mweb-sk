@@ -40,12 +40,17 @@
         </footer>
     </article>
      </AppLayout>
+
+
+
+    <Head>
+        <title>{{ post.title }}</title>
+    </Head>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { Link, useForm } from '@inertiajs/inertia-vue3';
-
+import { Link, useForm, Head } from '@inertiajs/inertia-vue3';
 
 export default {
     data(){
@@ -58,7 +63,8 @@ export default {
     },
     components:{
         AppLayout,    
-        Link
+        Link,
+        Head
     },
     setup () {
         const form = useForm({

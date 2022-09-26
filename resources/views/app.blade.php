@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="description" content="moja osobná stránka">
+        <meta name="keywords" content="všeličo">
+        <meta name="author" content="Martin Púchly">
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
