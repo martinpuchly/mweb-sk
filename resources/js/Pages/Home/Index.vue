@@ -21,8 +21,9 @@
                     <div class="card mt-2" v-for="quicknew in quicknews" :key="quicknew.id">
                         <div class="card-body">
                             <h6 class="card-subtitle mb-2 text-muted" v-if="quicknew.title">{{ quicknew.title }}</h6>
-                            <p class="card-text">{{ quicknew.text }}</p>
-                        </div>
+                            <div class="card-text">{{ quicknew.text }}</div>
+                            <div class="float-end fst-italic text-secondary"><small>{{ quicknew.create_hum }}</small></div>
+                        </div> 
                     </div>
                 </div>
             </div>
