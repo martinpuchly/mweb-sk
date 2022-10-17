@@ -1,7 +1,7 @@
 <template>
     <AppLayout>
         <h1>Kontakt</h1>
-        <form @submit.prevent="form.post(route('contact'), { onSuccess: () => form.reset()})">
+        <form @submit.prevent="recaptcha">
             <div class="row">
                 <div class="col-md-3">
                     <label for="name" class="col-sm-2 col-form-label">Meno: </label>
@@ -18,7 +18,7 @@
                 <div class="col-md-5">
                     <input type="email" name="email" id="email" v-model="form.email" class="form-control">
                     <div class="text-danger" v-if="form.errors.email">{{ form.errors.email }}</div>
-
+                    <div class="text-danger" v-if="form.errors.captcha_token">{{ form.errors.captcha_token }}</div>
                 </div>
             </div>
             <div class="row mt-3">
@@ -46,6 +46,8 @@
 <script>
     import AppLayout from "@/Layouts/AppLayout.vue";
     import { useForm, usePage } from "@inertiajs/inertia-vue3";
+    import { useReCaptcha } from "vue-recaptcha-v3";
+
     export default{
         components:{
             AppLayout,
@@ -56,9 +58,27 @@
                 name: null,
                 email: user.check ? user.user.email : null,
                 message: null,
+                captcha_token :null,
             })
+
+            const { executeRecaptcha, recaptchaLoaded } = useReCaptcha()
+            const recaptcha = async () => {
+                await recaptchaLoaded()
+                form.captcha_token = await executeRecaptcha('login')
+                submit();
+            }
+
+            function submit() {
+            form.post(route('contact'), {
+                preserveScroll: true,
+                onSuccess: () => console.log('success'),
+            })
+            }
+
+            return {
+                form, submit ,recaptcha,
+            }
             
-            return { form }
         }
 
     }
