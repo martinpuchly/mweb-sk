@@ -9,7 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuickNewController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +69,12 @@ Route::prefix('admin')
             Route::patch('/novinky/upravit/{quicknew}', [QuickNewController::class, 'update']);
             Route::delete('/novinky/vymazat/{quicknew}', [QuickNewController::class, 'delete'])->name('quicknews.delete');
 
+            //KONTAKT
+            Route::get('/kontakt', [ContactController::class, 'adminList'])->name('contact');
+            Route::get('/kontakt/{contact}', [ContactController::class, 'show'])->name('contact.show');
+            Route::post('/kontakt/{contact}/{onOff}', [ContactController::class, 'switchViewed'])->name('contact.switchViewed');
+            Route::delete('/kontakt/{contact}', [ContactController::class, 'delete'])->name('contact.delete');
+
 
         });
 
@@ -76,4 +82,10 @@ Route::prefix('admin')
         Route::get('/clanky/{tag?}', [PostController::class, 'index'])->name('posts');
         Route::get('/clanok/{post_slug}', [PostController::class, 'show'])->name('post');
         Route::put('/clanok/like/{post}', [PostController::class, 'like'])->name('post.like');
+
+        Route::get('/kontakt', [ContactController::class, 'create'])->name('contact');
+        Route::post('/kontakt', [ContactController::class, 'store']);
+
+
+
         Route::get('/{page_slug}', [PageController::class, 'show'])->name('page');

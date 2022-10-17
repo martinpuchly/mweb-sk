@@ -49,6 +49,17 @@
                     </Link>
                     </li>
                 </ul>
+            </div> 
+            <div class="col-md-3">
+                <h2>Správy</h2>
+                <ul>
+                    <li>
+                        <Link :href="route('admin.contact')" title="kontakty/správy" class="px-2" style="color:black; text-decoration:none">
+                            Správy
+                        </Link>         
+                    </li>
+
+                </ul>
             </div>  
             </div>
         </div>

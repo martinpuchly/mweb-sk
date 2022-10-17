@@ -13,6 +13,9 @@
                     <li class="nav-item">
                         <Link :href="route('page', {page_slug: 'portfolio'})" title="mweb.sk" class="navbar-brand px-2">Moje pokusy</Link>
                     </li>
+                    <li class="nav-item">
+                        <Link :href="route('contact')" title="kontakt" class="navbar-brand px-2">Kontakt</Link>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item" style="color:red" v-if="$page.props.auth.check">
