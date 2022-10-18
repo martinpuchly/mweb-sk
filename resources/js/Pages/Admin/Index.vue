@@ -58,7 +58,18 @@
                             Správy
                         </Link>         
                     </li>
-
+                </ul>
+            </div>  
+        </div> 
+        <div class="row gx-5 mt-4">
+            <div class="col-md-3">
+                <h2>Užívatelia</h2>
+                <ul>
+                    <li>
+                        <Link :href="route('admin.users')" title="užívatelia" class="px-2" style="color:black; text-decoration:none">
+                            Užívatelia
+                        </Link>         
+                    </li>
                 </ul>
             </div>  
             </div>

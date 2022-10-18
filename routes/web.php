@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuickNewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,13 @@ Route::prefix('admin')
             Route::get('/kontakt/{contact}', [ContactController::class, 'show'])->name('contact.show');
             Route::post('/kontakt/{contact}/{onOff}', [ContactController::class, 'switchViewed'])->name('contact.switchViewed');
             Route::delete('/kontakt/{contact}', [ContactController::class, 'delete'])->name('contact.delete');
+
+
+            //UZIVATELIA
+            Route::get('/uzivatelia', [UserController::class, 'adminList'])->name('users');
+            Route::get('/uzivatel/{user}', [UserController::class, 'edit'])->name('user.edit');
+            Route::patch('/uzivatel/{user}', [UserController::class, 'update']);
+            Route::delete('/uzivatel/{user}', [UserController::class, 'delete'])->name('user.delete');
 
 
         });
