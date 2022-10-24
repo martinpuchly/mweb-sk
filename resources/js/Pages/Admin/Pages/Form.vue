@@ -54,3 +54,10 @@
         },
     }
 </script>
+
+
+<style> /* don't add "scoped"; note that this will also globalize the CSS for all editors in your project */
+    .ck-editor .ck-editor__main .ck-content {
+        min-height: 500px;
+    }
+</style>

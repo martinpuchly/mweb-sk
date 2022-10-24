@@ -10,8 +10,6 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
 import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
-
-
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'mWeb.sk';
 
 createInertiaApp({
