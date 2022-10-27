@@ -17,7 +17,7 @@
                     </article>
                 </div>
                 <div class="col-lg-4 border-left" style="border-left-style: solid; border-color: rgba(34,34,70,0.5);">
-                    <h3>Novinky</h3>
+                    <h3 class="mt-lg-0 mt-5">Novinky</h3>
                     <div class="card mt-2" v-for="quicknew in quicknews" :key="quicknew.id">
                         <div class="card-body">
                             <h6 class="card-subtitle mb-2 text-muted" v-if="quicknew.title">{{ quicknew.title }}</h6>
@@ -28,12 +28,14 @@
                 </div>
             </div>
     </AppLayout>
-
+    <Head>
+        <title>Domov</title>
+    </Head>
 </template>
 
 <script>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import { Link } from '@inertiajs/inertia-vue3';
+    import { Link, Head } from '@inertiajs/inertia-vue3';
     
     export default{
         props:{
@@ -42,7 +44,8 @@
         },
         components:{
             AppLayout,
-            Link
+            Link,
+            Head
 
     },
         }

@@ -4,7 +4,7 @@
 
         <div class="container container-main ">
             <div class="row">
-                <SidePanel class="col-md-3 px-2 pt-4" style="border-right-style: solid; border-color: rgba(34,34,70,0.5);"></SidePanel >
+                <SidePanel class="col-md-3 px-2 pt-4 d-none d-lg-inline" style="border-right-style: solid; border-color: rgba(34,34,70,0.5);"></SidePanel >
                 <main class="col-md-9 pt-4">
                     <div  v-if="$page.props.flash.succeed" class="alert alert-success d-flex align-items-center" role="alert">
                         <div>

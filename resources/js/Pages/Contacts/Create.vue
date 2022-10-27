@@ -39,18 +39,21 @@
         </form>
     </AppLayout>
 
-
+    <Head>
+        <title>Kontakt</title>
+    </Head>
 </template>
 
 
 <script>
     import AppLayout from "@/Layouts/AppLayout.vue";
-    import { useForm, usePage } from "@inertiajs/inertia-vue3";
+    import { useForm, usePage, Head } from "@inertiajs/inertia-vue3";
     import { useReCaptcha } from "vue-recaptcha-v3";
-
+    
     export default{
         components:{
             AppLayout,
+            Head
         },
         setup () {
             const user = usePage().props.value.auth

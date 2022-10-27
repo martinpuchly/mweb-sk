@@ -44,14 +44,19 @@
             ckeditor: ClassicEditor.component,
         },
         data(){
-        return{
-            editor: ClassicEditor,
-            editorConfig: {
-                filebrowserUploadUrl: "{{route('admin.pages.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form',
+            return{
+                editor: ClassicEditor,
+                editorConfig: {
+                    ckfinder: {
+                            // Upload the images to the server using the CKFinder QuickUpload command.
+                            uploadUrl: route('admin.pages.image-upload', {_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')}),
+                            options: {
+                                resourceType: 'Images'
+                            },
+                        }
+                }
             }
         }
-        },
     }
 </script>
 

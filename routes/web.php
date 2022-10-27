@@ -49,7 +49,6 @@ Route::prefix('admin')
             Route::delete('/stranky/vymazat/{page}', [PageController::class, 'delete'])->name('pages.delete');
             Route::delete('/stranky/vymazattrvale/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
-
             Route::post('/stranky/uploadimage', [PageController::class, 'upload_images'])->name('pages.image-upload');
 
         //ČLÁNKY

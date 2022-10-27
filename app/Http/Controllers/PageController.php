@@ -75,17 +75,25 @@ class PageController extends Controller
 
     public function upload_images(Request $request)
     {
-         $request->validate([
-             'upload' => 'image',
-         ]);
-         if ($request->hasFile('upload')) {
-               $url = $request->upload->store('images');
-               $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-               $url = asset('storage/' . $url);
-               $msg = 'Image successfully uploaded';
-               $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-               @header('Content-type: text/html; charset=utf-8');
-               return $response;
-           }
-   }
+        
+        error_log("metóda!");
+        if($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName.'_'.time().'.'.$extension;
+        
+            $request->file('upload')->move(public_path('images'), $fileName);
+   
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('images/'.$fileName); 
+            $msg = 'Image uploaded successfully'; 
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+               
+            @header('Content-type: text/html; charset=utf-8'); 
+            echo $response;
+        }else{
+            error_log("nemáme file!");
+        }
+    }
 }

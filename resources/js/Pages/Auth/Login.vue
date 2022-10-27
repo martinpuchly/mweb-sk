@@ -25,7 +25,7 @@ const submit = () => {
         <Head title="prihlásiť sa" />
         <h1>Prihlásiť</h1>
         <form @submit.prevent="submit">
-        <div class="col-5">
+        <div class="col-md-5">
             <div class="form-group">
                     <label for="email" class="form-label">Emailová adresa:</label>
                     <input type="text" name="email" id="email" class="form-control" v-model="form.email">
