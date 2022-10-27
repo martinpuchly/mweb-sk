@@ -8,13 +8,13 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <Link :href="route('posts')" title="mweb.sk" class="navbar-brand px-2">Články</Link>
+                        <Link :href="route('posts')" title="mweb.sk" class="navbar-brand px-2" preserve-state>Články</Link>
                     </li>
                     <li class="nav-item">
-                        <Link :href="route('page', {page_slug: 'portfolio'})" title="mweb.sk" class="navbar-brand px-2">Moje pokusy</Link>
+                        <Link :href="route('page', {page_slug: 'portfolio'})" title="mweb.sk" class="navbar-brand px-2" preserve-state>Moje pokusy</Link>
                     </li>
                     <li class="nav-item">
-                        <Link :href="route('contact')" title="kontakt" class="navbar-brand px-2">Kontakt</Link>
+                        <Link :href="route('contact')" title="kontakt" class="navbar-brand px-2" preserve-state>Kontakt</Link>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
