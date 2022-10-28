@@ -30,5 +30,5 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
-
+    'exposed_headers' => ['x-inertia']  //INERTIA 
 ];
