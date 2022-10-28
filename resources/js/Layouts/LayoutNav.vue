@@ -8,15 +8,6 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <Link :href="route('posts')" title="mweb.sk" class="navbar-brand px-2" replace>Články</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link :href="route('page', {page_slug: 'portfolio'})" title="mweb.sk" class="navbar-brand px-2" replace>Moje pokusy</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link :href="route('contact')" title="kontakt" class="navbar-brand px-2" replace>Kontakt</Link>
-=======
                         <Link :href="route('posts')" title="mweb.sk" class="navbar-brand px-2">Články</Link>
                     </li>
                     <li class="nav-item">
@@ -24,7 +15,6 @@
                     </li>
                     <li class="nav-item">
                         <Link :href="route('contact')" title="kontakt" class="navbar-brand px-2">Kontakt</Link>
->>>>>>> ff2a164b6ba4d595c40ba46340a540c162b10b74
                     </li>
                 </ul>
                 <ul class="navbar-nav">
