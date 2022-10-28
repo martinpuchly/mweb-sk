@@ -30,6 +30,10 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
+<<<<<<< HEAD
     'exposed_headers' => ['x-inertia'],
 
+=======
+    'exposed_headers' => ['x-inertia']  //INERTIA 
+>>>>>>> ff2a164b6ba4d595c40ba46340a540c162b10b74
 ];
