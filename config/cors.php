@@ -15,7 +15,7 @@ return [
     |
     */
 
-    //'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
@@ -23,17 +23,13 @@ return [
 
     'allowed_origins_patterns' => [],
 
-    //'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'],
 
     'exposed_headers' => [],
 
     'max_age' => 0,
 
     'supports_credentials' => false,
-    'exposed_headers' => ['x-inertia'],
+ 
 
-
-    'allowed_origins' => ['mweb.sk'],
-    'paths' => [ '*' ],
-    'allowed_headers' => [ 'content-type,x-inertia,x-inertia-version,x-requested-with' ]
 ];

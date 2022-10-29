@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://mweb.sk'),
+    'url' => env('APP_URL', 'http://mweb.sk'),
 
     'asset_url' => env('ASSET_URL'),
 
