@@ -27,6 +27,10 @@ export default {
             tags: null,
             intro: "",
             text: "",
+            published: false,
+            published_at: null,
+            description: null,
+            keywords: null,
         })
 
         return { form }

@@ -15,7 +15,7 @@
                             </span>
                             <span v-for="tag, index in post.tag_array" :key="index">
                                 <Link :href="route('posts', tag)"  :title="'články ' + tag" class="mr-0">
-                                    {{ tag }}
+                                    {{ "#"+tag }}
                                 </Link>,
                             </span>
                         </div>

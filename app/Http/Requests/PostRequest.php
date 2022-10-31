@@ -30,7 +30,11 @@ class PostRequest extends FormRequest
             'intro' => 'required|min:50|max:5000',
             'text' => 'nullable|min:30',
             'slug' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'published' => 'boolean',
+            'published_at' => 'nullable|date',
+            'description' => 'nullable',
+            'keywords' => 'nullable',
         ];
     }
 

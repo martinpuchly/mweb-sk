@@ -28,7 +28,7 @@ class PostController extends Controller
         return Inertia::render(('Posts/Index'),[
             'posts'=>Post::when($tag, function ($query, $tag) {
                                 $query->where('tags', 'like', '%'.$tag.'%');
-                            })->orderBy('created_at', 'DESC')->paginate(5)
+                            })->orderBy('created_at', 'DESC')->published()->paginate(5)
         ]);
     }
 
@@ -48,6 +48,8 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $post = new Post($request->validated());
+        $post->published = $request->published == 'true' ? 1 : 0;
+        $post->published_at = date("Y-m-d H:i:s", strtotime($request->published_at));
         $post->save();
         return redirect()->route('admin.posts.update', ['post'=>$post])->with('succeed', 'Článok bol pridaný.');
     }
@@ -60,7 +62,7 @@ class PostController extends Controller
      */
     public function show(String $post_slug)
     {
-        if(!$post = Post::where('slug', $post_slug)->with('user')->first()){
+        if(!$post = Post::where('slug', $post_slug)->published()->with('user')->first()){
             return abort(404);
         }
         return Inertia::render('Posts/Show', [
@@ -102,6 +104,8 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $post->fill($request->validated());
+        $post->published = $request->published == 'true' ? 1 : 0;
+        $post->published_at = date("Y-m-d H:i:s", strtotime($request->published_at));
         $post->save();
         return redirect()->route('admin.posts.update', ['post'=>$post])->with('succeed', 'Článok bol upravený.');
     }

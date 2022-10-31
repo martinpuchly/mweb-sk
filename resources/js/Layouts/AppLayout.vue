@@ -37,6 +37,10 @@
 
 
     </div>
+    <Head>
+        <meta head-key="description" name="description" content="Osobná stránka-blog-portfólio." />
+        <meta head-key="keywords" name="keywords" content="portfolio, blog, programovanie" />
+    </Head>
 
         
 </template>
@@ -44,13 +48,14 @@
 
 <script>
     import SidePanel from './SidePanel.vue';
-    import { Link } from '@inertiajs/inertia-vue3'
+    import { Link, Head } from '@inertiajs/inertia-vue3'
     import LayoutNav from './LayoutNav.vue';
     export default{
         components:{
             SidePanel,
             Link,
-            LayoutNav
+            LayoutNav,
+            Head
         }
 
     }

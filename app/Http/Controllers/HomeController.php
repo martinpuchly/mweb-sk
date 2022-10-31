@@ -12,7 +12,7 @@ class HomeController extends Controller
     
     public function index(){
         return Inertia::render('Home/Index', [
-            'posts'=>Post::orderBy('created_at', 'DESC')->take(3)->get(),
+            'posts'=>Post::orderBy('created_at', 'DESC')->published()->take(3)->get(),
             'quicknews'=>QuickNew::orderBy('updated_at', 'ASC')->take(3)->get()
         ]);
 

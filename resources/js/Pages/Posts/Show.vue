@@ -16,7 +16,7 @@
         </header>
         <main>
             <section v-html="post.intro"></section>
-            <section v-if="!!post.text && post.text.lenght>20" v-html="post.text"></section>
+            <section v-if="!!post.text && post.text.length>20" v-html="post.text"></section>
         </main>
         <footer>
             <div class="float-start">
@@ -24,9 +24,12 @@
                     <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                     <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"/>
                 </svg>
-                <Link :href="route('posts', tag)" v-for="tag in post.tag_array" :title="tag" class="px-2">
-                    {{ tag }}, 
-                </Link>
+                <span v-for="tag, index in post.tag_array" :key="index">
+                    <Link :href="route('posts', tag)"  :title="'články ' + tag" class="mr-0" v-if="tag.length>0">
+                        {{ "#"+tag }}
+                    </Link>
+                    <span>, </span>
+                </span>
             </div>
             <div class="float-end pr-4" v-if="!!$page.props.auth.user && $page.props.auth.user.is_admin">
                  <Link :href="route('admin.posts.update', post)" title="upraviť" class="px-2">
@@ -39,12 +42,15 @@
             </div>
         </footer>
     </article>
+
      </AppLayout>
 
 
 
     <Head>
-        <title>{{ post.title }}</title>
+        <title>{{ post.title }}</title>.
+        <meta name="description" :content="post.description" v-if="post.description.length>0">
+        <meta name="keywords"  :content="post.keywords" v-if="post.description">
     </Head>
 </template>
 
@@ -72,7 +78,7 @@ export default {
         })
 
         return { form }
-    },
+        }
 
     }
 </script>

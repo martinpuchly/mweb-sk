@@ -26,7 +26,11 @@ export default {
             title: props.post.title,
             tags: props.post.tags,
             intro: props.post.intro,
-            text: props.post.text
+            text: props.post.text,
+            published: props.post.published == 1 ? true : false,
+            published_at: props.post.published_at,
+            description: props.post.description,
+            keywords: props.post.keywords,
         })
 
         return { form }
