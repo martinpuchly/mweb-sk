@@ -22,6 +22,8 @@
      
      <Head>
         <title>{{ page.title }}</title>
+        <meta head-key="description"  name="description" :content="page.meta_description" v-if="page.meta_description.length>0">
+        <meta head-key="keywords"  name="keywords"  :content="page.meta_keywords" v-if="page.meta_keywords.length>0">
     </Head>
 </template>
 

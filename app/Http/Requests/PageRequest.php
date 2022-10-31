@@ -28,7 +28,8 @@ class PageRequest extends FormRequest
             'title' => 'required|unique:pages,id,'.$this->id.'|min:5|max:255',
             'slug' => 'required|unique:pages,id,'.$this->id,
             'body' => 'required|min:20',
-
+            'meta_description' => 'nullable',
+            'meta_keywords' => 'nullable',
         ];
     }
 

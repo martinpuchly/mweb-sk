@@ -12,7 +12,7 @@ class Page extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'slug', 'description', 'body', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'slug', 'description', 'body', 'created_at', 'updated_at', 'meta_keywords', 'meta_description'];
     protected $appends = ['update_hum'];
 
     public function getUpdateHumAttribute(){

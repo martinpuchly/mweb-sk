@@ -25,7 +25,9 @@ export default {
             title: null,
             slug: null,
             description: null,
-            body: ""
+            body: "",
+            meta_description: null,
+            meta_keywords: null
         })
 
         return { form }

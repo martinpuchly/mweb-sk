@@ -37,7 +37,9 @@ export default {
             title: props.page.title,
             slug: props.page.slug,
             description: props.page.description,
-            body: props.page.body
+            body: props.page.body,
+            meta_description: props.page.meta_description,
+            meta_keywords: props.page.meta_keywords
         })
         return { form }
     },
