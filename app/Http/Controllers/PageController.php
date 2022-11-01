@@ -77,7 +77,7 @@ class PageController extends Controller
     {
         
         error_log("metóda!");
-        if($request->hasFile('upload')) {
+        if($request->file('upload')->getClientOriginalName()!="") {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
