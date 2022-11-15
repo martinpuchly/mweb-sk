@@ -72,10 +72,13 @@
             }
 
             function submit() {
-            form.post(route('contact'), {
-                preserveScroll: true,
-                onSuccess: () => console.log('success'),
-            })
+                form.post(route('contact'), {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        console.log('success')  
+                        form.reset()
+                    }
+                })
             }
 
             return {
