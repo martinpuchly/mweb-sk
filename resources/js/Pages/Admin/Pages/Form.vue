@@ -68,6 +68,8 @@
                             options: {
                                 resourceType: 'Images'
                             },
+                            openerMethod: 'popup',
+
                         }
                 }
             }

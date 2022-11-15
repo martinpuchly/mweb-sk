@@ -2,10 +2,10 @@
     
     <AppLayout>
         <h1>{{ page.title }}</h1>
-        <main v-html="page.body"></main>
+        <section v-html="page.body"></section>
         <footer style="border-top-style: solid">
-            <div class="float-start ml-3 fst-italic">
-            <span>naposledy upravené {{ page.update_hum }}</span>
+            <div class="float-start fst-italic">
+                <span>naposledy upravené {{ page.update_hum }}</span>
             </div>
             <div class="float-end pr-4" v-if="!!$page.props.auth.user && $page.props.auth.user.is_admin">
                  <Link :href="route('admin.pages.update', page)" title="upraviť" class="px-2">

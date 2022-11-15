@@ -6,6 +6,8 @@ use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Inertia\Inertia;
 use phpDocumentor\Reflection\Types\Boolean;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactSended;
 
 class ContactController extends Controller
 {
@@ -35,6 +37,10 @@ class ContactController extends Controller
     }
     public function store(ContactRequest $request){
         $contact = Contact::create($request->validated());
+
+        Mail::to(env('MAILS_TO'))->send(new ContactSended($contact));
+
+
         return redirect()->route('contact')->with('succeed', 'Správa bola odoslaná. Ďakujeme.');
     }
 
