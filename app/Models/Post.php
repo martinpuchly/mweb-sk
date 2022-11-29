@@ -38,7 +38,7 @@ class Post extends Model
 
     public function getCreateHumAttribute(){
         Carbon::setLocale('sk');
-        return $this->created_at->diffForHumans();
+        return $this->created_at ? $this->created_at->diffForHumans() : null;
     }
 
     public function getTagArrayAttribute(){

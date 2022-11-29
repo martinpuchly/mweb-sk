@@ -40,46 +40,52 @@
             <label for="body" class="col-sm-2 col-form-label">Stránka: </label>
             <div class="text-danger" v-if="form.errors.body">{{ form.errors.body }}</div>
             <div class="col-12">
-                <ckeditor :editor="editor" v-model="form.body" :config="editorConfig" class="ck-editor_small"></ckeditor>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.body" :modules="modules"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
-        <button class="btn btn-primary"> Uložiť </button>
+        <div class="mt-5">
+            <button class="btn btn-primary" @click="hu()"> Uložiť </button>
+        </div>
     </div>
 
 </template>
 
 <script>
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    import { QuillEditor } from '@vueup/vue-quill';
+    import BlotFormatter from 'quill-blot-formatter'
+    import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
     export default{
         props:{
             form: Object
         },
         components:{
-            ckeditor: ClassicEditor.component,
+            QuillEditor
+        },
+        
+        setup: () => {
+            const modules = {
+                name: 'blotFormatter',  
+                module: BlotFormatter, 
+                options: {/* options */}
+                }
+                return { modules }
         },
         data(){
             return{
-                editor: ClassicEditor,
-                editorConfig: {
-                    ckfinder: {
-                            // Upload the images to the server using the CKFinder QuickUpload command.
-                            uploadUrl: route('admin.pages.image-upload', {_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')}),
-                            options: {
-                                resourceType: 'Images'
-                            },
-                            openerMethod: 'popup',
-
-                        }
-                }
+                toolbarOptions: [
+                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                            [{ 'align': [] }],
+                            ['blockquote', 'code-block', 'image', 'video'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                            [{ 'direction': 'rtl' }],                         // text direction
+                            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                            ['clean']                                         // remove formatting button
+                        ]
             }
         }
     }
 </script>
-
-
-<style> /* don't add "scoped"; note that this will also globalize the CSS for all editors in your project */
-    .ck-editor .ck-editor__main .ck-content {
-        min-height: 500px;
-    }
-</style>

@@ -33,17 +33,17 @@
             <label for="intro" class="col-sm-3 col-form-label">Úvod článku | Kráty článok: </label>
             <div class="text-danger" v-if="form.errors.intro">{{ form.errors.intro }}</div>
             <div class="col-12">
-                <ckeditor :editor="editor" v-model="form.intro" :config="editorConfig" class="ck-editor_small"></ckeditor>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.intro" :modules="modules"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
-        <div class="mb-3 row col-12">
+        <div class="mb-3 row col-12 mt-5">
             <label for="text" class="col-sm-2 col-form-label">Text článku: </label>
             <div class="text-danger" v-if="form.errors.text">{{ form.errors.text }}</div>
             <div class="col-12">
-                <ckeditor :editor="editor" v-model="form.text" :config="editorConfig" class="ck-editor_small"></ckeditor>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.text" :modules="modules"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
-        <div class="mb-3 row col-12">
+        <div class="mb-3 row col-12 mt-5">
             <label for="published_at" class="col-sm-2 col-form-label">Publikovanie: </label>
             <div class="col-sm-5">
                 <input type="datetime-local" name="published_at" id="published_at" v-model="form.published_at" class="form-control">
@@ -63,30 +63,41 @@
 
 
 <script>
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    import { QuillEditor } from '@vueup/vue-quill';
+    import BlotFormatter from 'quill-blot-formatter'
+    import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
     export default{
         props:{
             form: Object
         },
         components:{
-            ckeditor: ClassicEditor.component
+            QuillEditor
+        },
+        
+        setup: () => {
+            const modules = {
+                name: 'blotFormatter',  
+                module: BlotFormatter, 
+                options: {/* options */}
+                }
+                return { modules }
         },
         data(){
             return{
-                editor: ClassicEditor,
-                editorConfig: {}
+                toolbarOptions: [
+                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                            [{ 'align': [] }],
+                            ['blockquote', 'code-block', 'image', 'video'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                            [{ 'direction': 'rtl' }],                         // text direction
+                            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                            ['clean']                                         // remove formatting button
+                        ]
             }
-        },
-
-
+        }
     }
 </script>
-
-
-
-<style> /* don't add "scoped"; note that this will also globalize the CSS for all editors in your project */
-    .ck-editor .ck-editor__main .ck-content {
-        min-height: 500px;
-    }
-</style>

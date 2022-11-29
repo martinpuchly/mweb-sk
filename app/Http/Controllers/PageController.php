@@ -75,8 +75,6 @@ class PageController extends Controller
 
     public function upload_images(Request $request)
     {
-        
-        error_log("metóda!");
         if($request->file('upload')->getClientOriginalName()!="") {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
@@ -85,13 +83,8 @@ class PageController extends Controller
         
             $request->file('upload')->move(public_path('images'), $fileName);
    
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('images/'.$fileName); 
-            $msg = 'Image uploaded successfully'; 
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-               
-            @header('Content-type: text/html; charset=utf-8'); 
-            echo $response;
+            return response()->json(['url'=>$url]);
         }else{
             error_log("nemáme file!");
         }
