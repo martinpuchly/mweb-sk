@@ -4,7 +4,7 @@
         <div class="row">
                 <div class="col-lg-8">
                     <h3>Najnovšie články</h3>
-                    <article v-for="post in posts" :key="post.id" class="mt-2 px-2 py-2 border rounded">
+                    <article v-for="post in posts" :key="post.id" class="mt-2 px-2 py-2 border-bottom">
                         <Link :href="route('post', post.slug)" title="zobraziť">
                             <h4>{{ post.title }}</h4>
                         </Link>  
