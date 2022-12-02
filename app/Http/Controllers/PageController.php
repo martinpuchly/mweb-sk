@@ -6,7 +6,8 @@ use App\Http\Requests\PageRequest;
 use Inertia\Inertia;
 use App\Models\Page;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Image;
 
 class PageController extends Controller
 {
@@ -75,15 +76,22 @@ class PageController extends Controller
 
     public function upload_images(Request $request)
     {
-        if($request->file('upload')->getClientOriginalName()!="") {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
-        
-            $request->file('upload')->move(public_path('images'), $fileName);
-   
-            $url = asset('images/'.$fileName); 
+        if($request->file('image')->getClientOriginalName()!="") {
+            $image = Image::make($request->file('image'));
+
+            //RESIZE IF WIDTH || HEIGHT > 450
+            if($image->width()>450 or $image->height()>450){
+                $image->resize(450, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            //SAVE
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileName = Str::random(7).'_'.time().'.'.$extension;
+            $image->save(public_path('images/pages/'), $fileName);
+
+            $url = asset('images/pages/'.$fileName); 
             return response()->json(['url'=>$url]);
         }else{
             error_log("nemáme file!");
