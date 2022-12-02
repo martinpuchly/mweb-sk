@@ -40,7 +40,7 @@
             <label for="body" class="col-sm-2 col-form-label">Stránka: </label>
             <div class="text-danger" v-if="form.errors.body">{{ form.errors.body }}</div>
             <div class="col-12">
-                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.body" :modules="modules"  contentType="html"  style="min-height:25rem"/>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.body" :modules="[imageUploader, blotFormatter]"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
         <div class="mt-5">
@@ -52,10 +52,11 @@
 
 <script>
     import { QuillEditor } from '@vueup/vue-quill';
+    import BlotFormatter from 'quill-blot-formatter';
     import '@vueup/vue-quill/dist/vue-quill.snow.css';
     import ImageUploader from 'quill-image-uploader';
     import axios from 'axios';
-    
+
     
     export default{
         props:{
@@ -66,29 +67,35 @@
         },
         
         setup: () => {
-            const modules = {
-                name: 'imageUploader',
-                module: ImageUploader,
-                options: {
-                upload: file => {
-                    return new Promise((resolve, reject) => {
-                    const formData = new FormData();
-                    formData.append("image", file);
+            const imageUploader = {
+                    name: 'imageUploader',
+                    module: ImageUploader,
+                    options: {
+                    upload: file => {
+                        return new Promise((resolve, reject) => {
+                        const formData = new FormData();
+                        formData.append("image", file);
 
-                    axios.post('/admin/stranky/uploadimage', formData)
-                    .then(res => {
-                        console.log(res)
-                        resolve(res.data.url);
-                    })
-                    .catch(err => {
-                        reject("Upload failed");
-                        console.error("Error:", err)
-                    })
-                    })
+                        axios.post('/admin/stranky/uploadimage', formData)
+                        .then(res => {
+                            console.log(res)
+                            resolve(res.data.url);
+                        })
+                        .catch(err => {
+                            reject("Upload failed");
+                            console.error("Error:", err.response.data.errors)
+                            alert('Obrázok sa nepodarilo nahrať. Pravdepodobne je príliš veľký,')
+                        })
+                        })
+                    }
                 }
             }
+            const blotFormatter = {
+                    name: 'blotFormatter',  
+                    module: BlotFormatter, 
+                    options: {/* options */}
             }
-            return { modules }
+            return { imageUploader, blotFormatter }
         },
         data(){
             return{

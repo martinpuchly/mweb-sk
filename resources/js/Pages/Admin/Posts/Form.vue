@@ -33,14 +33,14 @@
             <label for="intro" class="col-sm-3 col-form-label">Úvod článku | Kráty článok: </label>
             <div class="text-danger" v-if="form.errors.intro">{{ form.errors.intro }}</div>
             <div class="col-12">
-                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.intro" :modules="modules"  contentType="html"  style="min-height:25rem"/>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.intro" :modules="[imageUploader, blotFormatter]"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
         <div class="mb-3 row col-12 mt-5">
             <label for="text" class="col-sm-2 col-form-label">Text článku: </label>
             <div class="text-danger" v-if="form.errors.text">{{ form.errors.text }}</div>
             <div class="col-12">
-                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.text" :modules="modules"  contentType="html"  style="min-height:25rem"/>
+                <QuillEditor theme="snow" :toolbar="toolbarOptions" v-model:content="form.text" :modules="[imageUploader, blotFormatter]"  contentType="html"  style="min-height:25rem"/>
             </div>
         </div>
         <div class="mb-3 row col-12 mt-5">
@@ -64,6 +64,7 @@
 
 <script>
     import { QuillEditor } from '@vueup/vue-quill';
+    import BlotFormatter from 'quill-blot-formatter';
     import '@vueup/vue-quill/dist/vue-quill.snow.css';
     import ImageUploader from 'quill-image-uploader';
     import axios from 'axios';
@@ -77,29 +78,35 @@
             QuillEditor
         },
         setup: () => {
-            const modules = {
-                name: 'imageUploader',
-                module: ImageUploader,
-                options: {
-                upload: file => {
-                    return new Promise((resolve, reject) => {
-                    const formData = new FormData();
-                    formData.append("image", file);
+            const imageUploader = {
+                    name: 'imageUploader',
+                    module: ImageUploader,
+                    options: {
+                    upload: file => {
+                        return new Promise((resolve, reject) => {
+                        const formData = new FormData();
+                        formData.append("image", file);
 
-                    axios.post('/admin/stranky/uploadimage', formData)
-                    .then(res => {
-                        console.log(res)
-                        resolve(res.data.url);
-                    })
-                    .catch(err => {
-                        reject("Upload failed");
-                        console.error("Error:", err)
-                    })
-                    })
+                        axios.post('/admin/stranky/uploadimage', formData)
+                        .then(res => {
+                            console.log(res)
+                            resolve(res.data.url);
+                        })
+                        .catch(err => {
+                            reject("Upload failed");
+                            console.error("Error:", err.response.data.errors)
+                            alert('Obrázok sa nepodarilo nahrať. Pravdepodobne je príliš veľký,')
+                        })
+                        })
+                    }
                 }
             }
+            const blotFormatter = {
+                    name: 'blotFormatter',  
+                    module: BlotFormatter, 
+                    options: {/* options */}
             }
-            return { modules }
+            return { imageUploader, blotFormatter }
         },
         data(){
             return{

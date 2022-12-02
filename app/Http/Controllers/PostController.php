@@ -135,25 +135,22 @@ class PostController extends Controller
 
     public function upload_images(Request $request)
     {
-        if($request->file('image')->getClientOriginalName()!="") {
-            $image = Image::make($request->file('image'));
 
-            //RESIZE IF WIDTH || HEIGHT > 450
-            if($image->width()>450 or $image->height()>450){
-                $image->resize(450, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-
-            //SAVE
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileName = Str::random(7).'_'.time().'.'.$extension;
-            $image->save(public_path('images/posts/'), $fileName);
-
-            $url = asset('images/posts/'.$fileName); 
-            return response()->json(['url'=>$url]);
-        }else{
-            error_log("nemáme file!");
+        $file = $request->file('image');
+        $image = Image::make($file);
+        if($image->width()>450 or $image->height()>450){
+            $image->resize(450, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
         }
+
+        //SAVE
+        $fileName = Str::random(7).'.'.$file->getClientOriginalExtension(); // MENO + KONCOVKA OBRAZKU
+        $image->save(public_path('images/'.$fileName));
+
+
+            $url = asset('images/'.$fileName); 
+            return response()->json(['url'=>$url]);
+
     }
 }
