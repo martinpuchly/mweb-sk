@@ -49,8 +49,8 @@
 
     <Head>
         <title>{{ post.title }}</title>.
-        <meta name="description" head-key="description" :content="post.description" v-if="post.description.length>0">
-        <meta name="keywords" head-key="keywords"  :content="post.keywords" v-if="post.keywords.length>0">
+        <meta name="description" head-key="description" :content="post.description" v-if="post.description && post.description.length>0">
+        <meta name="keywords" head-key="keywords"  :content="post.keywords" v-if="post.keywords && post.keywords.length>0">
     </Head>
 </template>
 
