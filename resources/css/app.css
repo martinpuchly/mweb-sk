@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+    body{
+        background: rgb(0,52,16);
+        background: linear-gradient(180deg, rgba(0,52,16,1) 0%, rgba(0,99,10,0.5074404761904762) 070%);
+    }
+
+    .main-container{
+        @apply bg-white min-h-screen
+    }
+
+    .text-primary{
+        @apply text-green-900
+    }
+    .text-secondary{
+        @apply text-green-700
+    }
+
+    .text-danger{
+        @apply text-red-800
+    }
+
+    h1, h2, h3, h4, h5{
+        @apply text-green-900 underline
+    }
+    h1{
+        @apply text-4xl mb-4 relative right-3
+
+    }
+    h2{
+        @apply text-3xl
+    }
+    h3{
+        @apply text-2xl
+    }
+    h4{
+        @apply text-xl
+    }
+    
+
+    .form-group{
+        @apply flex flex-col mb-3 pr-10
+    }
+
+
+    .form-label{
+        @apply text-lg font-semibold mb-0 pb-0 text-primary block
+    }
+
+    .form-control{
+        @apply text-base py-1 rounded-md  block w-full
+    }
+    .form-control:focus{
+        @apply border-green-900 border-solid
+    }
+
+
+
+    a{
+        @apply text-primary 
+    }
+
+    a:hover, a:focus{
+        @apply text-green-600
+    }
+
+    .main a:hover, a:focus{
+        @apply underline
+    }
+
+    .text-danger{
+        @apply text-red-700
+    }
+
+
+
+    .btn{
+        @apply border border-solid px-4 py-1 rounded-md
+    }
+
+    .btn-primary{
+        @apply bg-green-800 text-white
+    }    
+    .btn-primary:hover, .btn-primary:focus{
+        @apply bg-green-700
+    }
+
+    .btn-danger{
+        @apply bg-red-800 text-white
+    }    
+    .btn-danger:hover, .btn-danger:focus{
+        @apply bg-red-700
+    }
+
+    .btn-success{
+        @apply bg-blue-800 text-white
+    }    
+    .btn-success:hover, .btn-primary:focus{
+        @apply bg-blue-700
+    }
+
+    table{
+        @apply w-full 
+    }
+    thead {
+        @apply text-left text-white bg-green-800
+    }
+    td, th{
+        @apply py-1 pl-1 pr-3 border border-gray-300
+    }
+
+    .breadcrumb{
+        @apply flex flex-row gap-2 mb-3
+    }
+    .breadcrumb-item::after {
+        content: ' / ';
+      }
+
+}
