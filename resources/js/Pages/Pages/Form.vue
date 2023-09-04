@@ -30,8 +30,8 @@
             <div v-if="errors.body" class="text-danger">
                     {{ errors.body }}
             </div>
-
             <QuillEditor theme="snow" :modules="modules" toolbar="full" v-model:content="form.body" contentType="html"></QuillEditor>
+
         </div>
     </div>
     <div class="mt-5">
@@ -51,7 +51,7 @@
     const props = defineProps({
         form: Object,
         errors: Object,
-        show_options: Object
+        show_options: Object,
     })
 
 
