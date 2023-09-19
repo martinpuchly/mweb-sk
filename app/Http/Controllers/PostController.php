@@ -74,11 +74,9 @@ class PostController extends Controller
      */
     public function show(Request $request, string $post_slug)
     {
-        if(!$post = Post::orderBy('published_at', 'DESC')->where('slug', $post_slug)
-                                                    ->with(['user' => function ($query) {
+        if(!$post = Post::where('slug', $post_slug)->with(['user' => function ($query) {
                                                         $query->select('id', 'name');
                                                     }])
-                                                    ->publish()
                                                     ->first())
         {
             return abort(404);
@@ -112,7 +110,6 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         Gate::authorize('is-admin');
-
         $post->update($request->only(['title', 'slug', 'intro', 'body', 'tags', 'published', 'published_at', 'keywords', 'description', 'user_id']));
         return redirect()->route('admin.post.edit', ['post'=>$post->id])->with('succeed', 'Článok bol upravený.');
     }

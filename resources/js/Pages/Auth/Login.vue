@@ -87,9 +87,9 @@ const submit = () => {
                         Zabudol si heslo?
                     </Link>
 
-                    <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <button class="btn btn-primary mx-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Prihlásiť
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
         </div>

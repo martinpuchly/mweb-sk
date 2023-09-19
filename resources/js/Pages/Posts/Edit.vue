@@ -23,7 +23,7 @@
         </form>
     </AppLayout>
 
-    <Head title="vytvoriť stránku"></Head>
+    <Head title="vytvoriť článok"></Head>
 
 
 </template>

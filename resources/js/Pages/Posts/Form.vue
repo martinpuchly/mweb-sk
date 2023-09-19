@@ -1,7 +1,5 @@
 <template>
     <div class="flex flex-col sm:flex-row">
-
-
         <div class="form-group sm:w-1/3 w-full">
             <div>
                 <label for="title" class="form-label block">Titulok článku: </label>
@@ -11,8 +9,10 @@
                 <div v-if="errors.title" class="text-danger">
                     {{ errors.title }}
                 </div>
+                <div v-if="errors.slug" class="text-danger">
+                    {{ errors.slug }}
+                </div>
             </div>
-
         </div>
         <div class="form-group  sm:w-1/3 w-full">
             <label for="tags" class="form-label">Tagy:</label>

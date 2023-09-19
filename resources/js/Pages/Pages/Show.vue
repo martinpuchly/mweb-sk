@@ -9,9 +9,6 @@
             </main>
         </article>
         <br clear="all">
-        <footer class="float-end fst-italic">
-            naposedy upravil <span v-if="page.user">{{ page.user.name }}</span> dňa {{ page.humanize_update_date }}
-        </footer>
     </AppLayout>
 
     <Head>

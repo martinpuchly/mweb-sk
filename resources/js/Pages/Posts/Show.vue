@@ -19,7 +19,7 @@
                     <Link :href="route('posts', {tag: tag})">#{{ tag }}</Link>, 
                 </span>
             </section>
-            <section class="float-end">
+            <section class="text-end italic">
                 publikoval {{ post.user.name }} {{ post.humanize_published_date }}
             </section>
         </footer>

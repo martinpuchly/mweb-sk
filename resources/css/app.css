@@ -84,6 +84,9 @@
         @apply border border-solid px-4 py-1 rounded-md
     }
 
+    .btn:hover, .btn:focus{
+        @apply text-gray-200
+    }
     .btn-primary{
         @apply bg-green-800 text-white
     }    
@@ -122,7 +125,16 @@
         content: ' / ';
       }
 
+    .quill-bu ul{
+        @apply list-disc
+    }
+    .quill-bu ol{
+        @apply list-decimal
+    }
 
+    .quill-bu blockquote{
+        @apply border-l-4 pl-2 ml-2 my-4
+    }
 
 
 }

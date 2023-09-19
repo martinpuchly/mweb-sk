@@ -50,18 +50,18 @@ class PostRequest extends FormRequest
             'body.min'=>'Text článku musí obsahovať minimálne :min znakov.',
             'published_at.date'=>'Dátum publikovania má nesprávny formát.',
             'user_id.required'=>'Neznámi autor úpravy. Chyba stránky!',
-        ];
+            'slug.unique'=>'Článok s rovnakou url generovanou podľa titulku článku sa už v databáze nachádza.'        ];
     }
 
 
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => Str::slug($this->title.' '.Date("m-Y")),
+            'slug' => Str::slug($this->title.' '.Date("d-m-Y")),
             'user_id' => $this->user()->id,
             'intro' => trim($this->intro),
             'body' => trim($this->body),
-            'published' => $this->published ? true : false, 
+            'published' => $this->published ? 1 : 0, 
             'published_at' => empty($this->published_at) ? Date("Y-m-d H:i") : $this->published_at,
             'tags' => $this->tags ? implode(',' ,array_map(function($a) { return Str::slug($a); }, explode(',', $this->tags))) : ''
         ]);

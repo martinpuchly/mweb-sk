@@ -32,10 +32,9 @@
                 </div>
             </div>
             </aside>
-            <main class="sm:w-4/5 mt-4 mx-3 pl-5 pb-16">
+            <main class="sm:w-4/5 mt-4 mx-3 pl-5 pb-16 pr-5 sm:pr-10">
                 <Messages/>
                 <slot />
-            
             </main>
         </section>
         <footer class="mt-5 mb-10 text-center">
