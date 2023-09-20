@@ -6,19 +6,18 @@
 @layer base {
 
     body{
-        background: rgb(0,52,16);
-        background: linear-gradient(180deg, rgba(0,52,16,1) 0%, rgba(0,99,10,0.5074404761904762) 070%);
+        @apply bg-gray-900
     }
 
     .main-container{
-        @apply bg-white min-h-screen
+        @apply bg-gray-800 text-gray-100 min-h-screen
     }
 
     .text-primary{
-        @apply text-green-900
+        @apply text-green-300
     }
     .text-secondary{
-        @apply text-green-700
+        @apply text-green-500
     }
 
     .text-danger{
@@ -26,10 +25,10 @@
     }
 
     h1, h2, h3, h4, h5{
-        @apply text-green-900 underline
+        @apply text-green-700 underline
     }
     h1{
-        @apply text-4xl mb-4 relative right-3
+        @apply text-4xl mb-4 relative right-2
 
     }
     h2{
@@ -53,7 +52,7 @@
     }
 
     .form-control{
-        @apply text-base py-1 rounded-md  block w-full
+        @apply text-base py-1 rounded-md  block w-full bg-gray-600 text-gray-200 placeholder-gray-400
     }
     .form-control:focus{
         @apply border-green-900 border-solid

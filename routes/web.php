@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JokeController;
 
 
 
@@ -68,6 +69,14 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/kontakt/{contact}', [ContactController::class, 'show'])->name('contact.show');
     Route::patch('/kontakt/{contact}/saveStatus', [ContactController::class, 'saveStatus'])->name('contact.saveStatus');
     Route::delete('/kontakt/{contact}/vymazat', [ContactController::class, 'destroy'])->name('contact.delete');
+
+#JOKES
+    Route::get('/vtipy', [JokeController::class, 'adminIndex'])->name('jokes');
+    Route::get('/vtip/novy', [JokeController::class, 'create'])->name('joke.add');
+    Route::post('/vtip/novy', [JokeController::class, 'store']);
+    Route::get('/vtip/{joke}/upravit', [JokeController::class, 'edit'])->name('joke.edit');
+    Route::patch('/vtip/{joke}/upravit', [JokeController::class, 'update']);
+    Route::delete('/vtip/{joke}/vymazat', [JokeController::class, 'delete'])->name('joke.delete');
 
 
 });

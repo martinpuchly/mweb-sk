@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
+use App\Models\Joke;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
                                 $query->select('id', 'name');
                             }])
                             ->publish()
-                            ->take(5)->get()
+                            ->take(1)->get(),
         ]);
     }
 

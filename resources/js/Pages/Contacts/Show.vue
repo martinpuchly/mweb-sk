@@ -8,23 +8,23 @@
             </nav>
             <h1>Správa:</h1>
             <div class="flex flex-col sm:flex-row gap-3">
-                <div class="text-green-900 font-bold text-xl">Email: </div>
+                <div class="form-label">Email: </div>
                 <div class="text-xl">{{ contact.email }}</div>
             </div>
             <div class="flex flex-col sm:flex-row gap-3">
-                <div class="text-green-900 font-bold text-xl">Správa: </div>
+                <div class="form-label">Správa: </div>
                 <div class="text-xl italic">{{ contact.text }}</div>
             </div>
             <div class="flex flex-col sm:flex-row gap-3 mt-20">
-                <div class="text-green-900 font-bold text-xl">Status správy: </div>
+                <div class="form-label">Status správy: </div>
                 <div>
-                    <select class="form-select" v-model="form.status" @change.prevent="saveStatus()">
+                    <select class="form-select rounded-lg bg-slate-600 py-1 accent-purple-700" v-model="form.status" @change.prevent="saveStatus()">
                         <option v-for="(status, index) in statuses" :value="index">{{ status }}</option>
                     </select>
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row gap-3 mt-5">
-                <div class="text-green-900 font-bold text-xl">Vymazať správu: </div>
+                <div class="form-label">Vymazať správu: </div>
                 <div class="">
                    <Link @click.prevent="del(contact.id)" class="btn btn-danger">Vymazať správu</Link>
                 </div>

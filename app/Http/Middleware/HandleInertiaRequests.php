@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+use Illuminate\Support\Facades\Cache;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -47,6 +48,7 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'recaptcha_site_key' => config('services.google_recaptcha.site_key'),
+            'joke'=>Cache::get('joke')
         ]);
     }
 }
