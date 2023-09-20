@@ -16,11 +16,11 @@ class Controller extends BaseController
     public function __construct()
     {
         if(!Cache::has('joke')){
-            if(!$joke = Joke::inRandomOrder()->pluck('text')->first())
+            if(!$joke = Joke::inRandomOrder()->first())
             {
                 $joke='no joke';
             }
-            Cache::add('joke', $joke, now()->addHours(1));
+            Cache::add('joke', $joke->text_show, now()->addHours(1));
         }
     }
 
