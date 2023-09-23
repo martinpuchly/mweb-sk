@@ -15,7 +15,7 @@
                 <p>
                     Najsympatickejší mi je programovací jazyk <strong>Ruby</strong> a web framework <strong>Ruby on Rails</strong>. Páči sa mi syntax a rád by som v ňom vytváral viac, ale svet valcuje podobný, za mňa menej prívetivý jazyk <strong>Python</strong>. Nekonečné množstvo knižníc je ale dostatočné plus a na niektoré vecičky som Python využíval.
                 </p>
-                <p class="mt-3 text-center text-3xl py-4">
+                <p class="mt-3 text-center text-3xl py-4" id="port_link">
                     <Link :href="route('page', {page_slug: 'portfolio'})">PORTFÓLIO</Link>
                 </p>
                 <h3 class="underline">Ďalšie zdroje:</h3>
@@ -58,4 +58,14 @@
        posts: Object
     })
 
+
 </script>
+
+<style scoped>
+    #port_link:hover {
+        position: relative;
+        left: 0px
+    }
+
+
+</style>
