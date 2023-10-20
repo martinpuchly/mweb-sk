@@ -73,7 +73,7 @@
 
                 </div>
                 <span class="text-red-500 font-semibold" v-else>
-                    Zatiaľ neboli pridané žiadne stránky.
+                    Zatiaľ neboli pridané žiadne články.
                 </span>
             </div>  
     </AppLayout>
