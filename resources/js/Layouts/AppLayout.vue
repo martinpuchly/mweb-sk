@@ -55,7 +55,6 @@
 <script setup>
     import Messages from '@/Layouts/Messages.vue'
     import { Link } from '@inertiajs/vue3';
-    import Nav from '@/Layouts/Nav.vue'
     import { reactive } from 'vue'
 
     let year = new Date().getFullYear();

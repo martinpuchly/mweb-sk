@@ -20,7 +20,10 @@ class Controller extends BaseController
             {
                 $joke='no joke';
             }
-            Cache::add('joke', $joke->text_show, now()->addHours(1));
+            else
+            {
+                Cache::add('joke', $joke->text_show, now()->addHours(1));
+            }
         }
     }
 
