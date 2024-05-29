@@ -15,6 +15,7 @@ class HomeController extends Controller
     public function index(): InertiaResponse
     {
         return Inertia::render('Home/Index', [
+            'title_head' => Page::where('slug', 'title-head')->first(),
             'posts'=>Post::orderBy('published_at', 'DESC')->with(['user' => function ($query) {
                                 $query->select('id', 'name');
                             }])
