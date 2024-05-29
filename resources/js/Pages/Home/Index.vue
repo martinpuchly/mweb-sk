@@ -1,13 +1,15 @@
 <template>
     <AppLayout>
-        <section>
-            <div class="bg-gray-700 pt-3 px-5 rounded-xl mb-10 pb-5">
-               {{ title_head.body }}
+        <section v-if="title_head">
+            <div class="bg-gray-700 pt-3 px-5 rounded-xl mb-10 pb-5" v-html="title_head.body">
+               
             </div>
         </section>
         <section>
             <h2 class="underline my-5">Najnovší článok</h2>
-            <PostBlock  v-for="post in posts" :key="post.id" :post="post" v-if="posts.length" class="border-b-2 mb-4"></PostBlock>
+            <div v-if="posts.length">
+                <PostBlock  v-for="post in posts" :key="post.id" :post="post" class="border-b-2 mb-4"></PostBlock>
+            </div>
             <div v-else>Zatiaľ nemáme žiadne články.</div>
         </section>
     
