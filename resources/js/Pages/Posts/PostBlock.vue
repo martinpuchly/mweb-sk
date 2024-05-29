@@ -5,10 +5,6 @@
                 <h3>{{ post.title }}</h3>
             </header>
             <main v-html="post.intro" style="overflow-wrap: break-word;" class="quill-bu"></main>
-            <ul>
-                <li>hovado</li>
-                <li>hovado</li>
-            </ul>
             <div class="w-100" v-if="post.tags">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-tags mx-1" viewBox="0 0 16 16">
                 <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
@@ -25,7 +21,7 @@
                 <span v-if="post.user_id">publikoval {{ post.user.name }}</span> {{ post.humanize_published_date }}
             </footer>
         </article>
-
+        <div style='clear:both'></div>
     </div>
 
 </template>
