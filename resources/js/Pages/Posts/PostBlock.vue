@@ -21,7 +21,7 @@
                 <span v-if="post.user_id">publikoval {{ post.user.name }}</span> {{ post.humanize_published_date }}
             </footer>
         </article>
-        <div style='clear:both'></div>
+        <div class="clearfix"></div>
     </div>
 
 </template>
