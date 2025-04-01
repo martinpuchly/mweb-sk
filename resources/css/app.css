@@ -6,18 +6,21 @@
 @layer base {
 
     body{
-        @apply bg-gray-900
+        @apply bg-gray-800
+    }
+    header{
+        @apply bg-slate-900
     }
 
     .main-container{
-        @apply bg-gray-800 text-gray-100 min-h-screen
+        @apply bg-slate-900 text-gray-100 min-h-screen
     }
 
     .text-primary{
-        @apply text-green-300
+        @apply text-yellow-300
     }
     .text-secondary{
-        @apply text-green-500
+        @apply text-yellow-500
     }
 
     .text-danger{
@@ -25,7 +28,7 @@
     }
 
     h1, h2, h3, h4, h5{
-        @apply text-green-700 underline
+        @apply text-yellow-600 underline
     }
     h1{
         @apply text-4xl mb-4 relative right-2
@@ -68,7 +71,7 @@
     }
 
     a:hover, a:focus{
-        @apply text-green-600
+        @apply text-yellow-600
     }
 
     .main a:hover, a:focus{

@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto">
         <header class="border-b-2 relative">
-            <div class="flex md:hidden float-right mt-2 mr-4"  @click="rea.showMenu=!rea.showMenu">
+            <div class="flex sm:hidden float-right mt-2 mr-4"  @click="rea.showMenu=!rea.showMenu">
             <button 
             type="button"
             class="
@@ -18,13 +18,12 @@
             </button>
         </div>
             <Link :href="route('/')" class="inline-block">
-                <div class="text-green-100 text-4xl sm:text-5xl md:text-6xl py-1 md:py-5 pl-5 md:pl-10">mWeb.sk</div>
+                <div class="text-yellow-500 text-4xl sm:text-5xl md:text-6xl py-1 md:py-5 pl-5 md:pl-10 underline">mWeb.sk</div>
             </Link>
             <nav  :class="{ 'flex': rea.showMenu, 'hidden sm:flex': !rea.showMenu }" class="main_menu md:absolute right-5 top-2 sm:gap-5 pl-5 md:pl-0 flex-col sm:flex-row">
                 <Link :href="route('admin')" v-if="$page.props.auth?.user?.is_admin">ADMIN</Link>  
                 <Link :href="route('/')">DOMOV</Link>  
                 <Link :href="route('page', {page_slug: 'o-mne'})">O MNE</Link>
-                <Link :href="route('page', {page_slug: 'portfolio'})">PORTFÓLIO</Link>
                 <Link :href="route('posts')">ČLÁNKY</Link>  
                 <Link :href="route('contact.add')">KONTAKT</Link>  
             </nav>
@@ -42,8 +41,8 @@
                 <slot />
             </main>
         </section>
-        <footer class="mt-5 mb-10 text-center text-green-900">
-            <div>&#169;{{ year }}, mWeb.sk</div>
+        <footer class="mt-5 mb-10 text-center text-yellow-500">
+            <div>&#169;mWeb.sk, 2024-{{ year }}</div>
         </footer>
 
     </div>
